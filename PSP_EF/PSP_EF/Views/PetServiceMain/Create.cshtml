@@ -1,0 +1,67 @@
+﻿@model PSP_EF.Models.Service
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Service</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProviderId, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProviderId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProviderId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PetId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PetId)
+            @Html.ValidationMessageFor(model => model.PetId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ServiceName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ServiceName)
+            @Html.ValidationMessageFor(model => model.ServiceName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

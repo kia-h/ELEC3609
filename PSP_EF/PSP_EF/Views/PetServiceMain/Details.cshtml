@@ -1,0 +1,50 @@
+﻿@model PSP_EF.Models.Service
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Service</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Customer.Username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.Username)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PetId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ServiceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ServiceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ServiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

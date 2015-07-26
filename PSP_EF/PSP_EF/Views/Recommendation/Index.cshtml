@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PSP_EF.Models.Recommendation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerAid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerBid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isread)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerAid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerBid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isread)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RecommendationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RecommendationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RecommendationId })
+        </td>
+    </tr>
+}
+
+</table>

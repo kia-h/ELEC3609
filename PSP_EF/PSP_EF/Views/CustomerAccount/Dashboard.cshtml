@@ -1,0 +1,140 @@
+﻿@using PSP_EF.Models
+@model PSP_EF.Models.Customer
+
+@{
+    ViewBag.Title = "Dashboard";
+    var cUser = (Customer)Session["currentUser"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style {
+    <style type="text/css">
+        .tab-pane .jumbotron
+        {
+            padding: 10px 10px 10px 10px;
+            font-size: 15px;
+        }
+        .jumbotron .badge
+        {
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+        .jumbotron .btn
+        {
+            margin-left: 1px;
+            margin-right: 1px;
+        }
+        .jumbotron img
+        {
+            max-width: 120px;
+        }
+    </style>
+}
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Personal Info</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-4" style="padding-left:0px; padding-right:0px;">
+                        <img src="../../Images/no_photo.jpg" class="img-thumbnail img-responsive"/>
+                    </div>
+                    <div class="col-sm-8">
+                        <p style="margin-bottom:auto;">
+                            <strong>Welcome back,</strong><br />
+                            <a href="@Url.Action("EditDetails", "CustomerAccount")" data-toggle="tooltip" data-placement="auto" title="Click to Edit Details" id="userTooltip">@cUser.FirstName</a>
+                        </p>
+                        <p style="margin-bottom:auto;">Uid: @cUser.CustomerId</p>
+                        <p style="margin-bottom:auto;">Lv. 5</p>
+                        <div class="progress" data-toggle="tooltip" data-placement="auto" title="60%" id="levelTooltip" style="margin-bottom:auto;">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form role="form" action="#" method="post" style="text-align:center">
+                        <div class="form-group">
+                            <label for="actionType">What Do You Want to Post?</label>
+                            <select class="form-control required" id="actionType" name="actionType">
+                                <option selected="selected" value="1">Pet Adoption</option>
+                                <option value="2">Pet Selling</option>
+                                <option value="3">Pet Lost</option>
+                                <option value="4">Pet Class</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-default btn-primary" style=" margin-left:auto; margin-right:auto;">Post Information</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <ul class="nav nav-tabs" id="dashboardTab">
+                <li><a href="#active" data-toggle="tab">Active&nbsp;<span class="badge pull-right">10</span></a></li>
+                <li><a href="#hirer" data-toggle="tab">Hirer&nbsp;<span class="badge pull-right">2</span></a></li>
+                <li><a href="#hiree" data-toggle="tab">Hiree&nbsp;<span class="badge pull-right">5</span></a></li>
+                <li><a href="#rate" data-toggle="tab">Need Rating&nbsp;<span class="badge pull-right">3</span></a></li>
+                <li><a href="#history" data-toggle="tab">History</a></li>
+            </ul>
+            <div class="tab-content" style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="tab-pane fade in active" id="active">
+                    <div class="jumbotron container">
+                        <div class="col-sm-3">
+                            <img src="../../Images/no_photo.jpg" class="img-thumbnail img-responsive"/>
+                        </div>
+                        <div class="col-sm-9">
+                            <h2>[Dummy] FireBird Sydney<span class="badge pull-right">Hiree</span><span class="badge pull-right">Pet Sitter</span></h2>
+                            <p>[Dummy] Best pet sitters in Sydney! Incredible low price ...</p>
+                            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+                        </div>
+                    </div>
+                    <div class="jumbotron container">
+                        <div class="col-sm-3">
+                            <img src="../../Images/no_photo.jpg" class="img-thumbnail img-responsive"/>
+                        </div>
+                        <div class="col-sm-9">
+                            <h2>[Dummy] Dog Talent<span class="badge pull-right">Hirer</span><span class="badge pull-right">Pet Class</span><span class="badge pull-right">Need Rating</span></h2>
+                            <p>[Dummy] Teach your pet to stand ...</p>
+                            <p><a class="btn btn-default" href="#">View details &raquo;</a><a class="btn btn-default" href="#">Rate &raquo;</a></p>
+                        </div>
+                    </div>
+                    <div class="jumbotron container">
+                        <div class="col-sm-3">
+                            <img src="../../Images/no_photo.jpg" class="img-thumbnail img-responsive"/>
+                        </div>
+                        <div class="col-sm-9">
+                            <h2>[Dummy] Fashion in Pet<span class="badge pull-right">Hirer</span><span class="badge pull-right">Pet Salon</span><span class="badge pull-right">Processing</span></h2>
+                            <p>[Dummy] We make fashion in pets ...</p>
+                            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="hirer">
+                    <p>Hirer</p>
+                </div>
+                <div class="tab-pane fade" id="hiree">
+                    <p>Hiree</p>
+                </div>
+                <div class="tab-pane fade" id="rate">
+                    <p>Need</p>
+                </div>
+                <div class="tab-pane fade" id="history">
+                    <p>History</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@section scripts {
+    <script>
+        $(function () {
+            $('#dashboardTab a:first').tab('show')
+            $('#userTooltip').tooltip('hide')
+            $('#levelTooltip').tooltip('hide')
+        })
+    </script>
+}

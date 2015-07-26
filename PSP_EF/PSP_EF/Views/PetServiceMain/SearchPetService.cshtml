@@ -1,0 +1,65 @@
+﻿@model PSP_EF.Models.Service
+
+@{
+    ViewBag.Title = "SearchPetService";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style {
+    <style type="text/css">
+        body 
+        {
+            padding-top: 80px;
+        }
+        .btn-block
+        {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+}
+
+<h2>Hire Service</h2>
+
+<form role="form" class="col-lg-9 form-horizontal" action="@Url.Action("SearchPetServiceResult", "PetServiceMain")" method="post" onsubmit="return validateNumberRange()">
+    <div class="form-group">
+        <label for="PetCategory" class="col-sm-3 control-label">Service Type:</label>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(model => model.ServiceName, new SelectList(new List<Object>{
+                    new {value = "Pet Walking", text = "Pet Walking"},
+                    new {value = "Pet Sitting", text = "Pet Sitting"},
+                    new {value = "Pet Saloon", text = "Pet Saloon"},
+                    new {value = "Pet Washing", text = "Pet Washing"}
+                }, "value", "text", "Pet Walking"))
+            </div>
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.DisplayNameFor(model => model.Price)" class="col-sm-3 control-label">Price Range</label>
+        <div class="col-sm-9">
+                @Html.TextBox("fromPrice")
+                to
+                @Html.TextBox("toPrice")
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-default btn-primary">Search</button>
+</form>
+
+
+@section scripts {
+    <script type="text/javascript">
+        $('#DOBPicker').datetimepicker({
+            weekStart: 1,
+            autoclose: 1,
+            startView: 2,
+            minView: 2,
+            endDate: new Date(),
+            forceParse: 1
+        });
+    </script>
+
+}

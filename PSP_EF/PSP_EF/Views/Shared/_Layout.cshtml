@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBasic.cshtml";
+}
+
+@section style {
+    <style type="text/css">
+        body 
+        {
+            padding-top: 60px;
+        }
+        #searchbar
+        {
+            padding-bottom: 26px;
+            padding-top: 26px;
+        }
+    </style>
+    @RenderSection("style", required: false)
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4">
+            <img src="../../Images/psp_logo.gif" alt="logo"/>
+        </div>
+        <div class="col-lg-6" id="searchbar">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search"/>
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Search in <span class="caret"></span></button>
+                    <ul class="dropdown-menu pull-right" style="z-index: 1001">
+                        <li><a href="#">Pet Adoption</a></li>
+                        <li><a href="#">Pet Buying</a></li>
+                        <li><a href="#">Pet Service</a></li>
+                        <li><a href="#">Pet Class</a></li>
+                    </ul>
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+        <nav class="navbar navbar-inverse" role="navigation">
+	        <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        </button>
+	        </div>
+	        <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+			        <li>@Html.ActionLink("Dashboard", "Dashboard", "CustomerAccount")</li>
+			        <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pet Service <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Post Service", "PostService", "PetServiceMain")</li>
+                            <li>@Html.ActionLink("Search Service", "SearchPetService", "PetServiceMain")</li>
+                            <li>@Html.ActionLink("Cancel Service", "CancelService", "PetServiceMain")</li>
+				        </ul>
+			        </li>
+			        <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pet Buying <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Pet Buying", "Buying", "PetBuyingSelling")</li>
+                            <li>@Html.ActionLink("Pet Selling", "Selling", "PetBuyingSelling")</li>
+				        </ul>
+			        </li>
+			        <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pet Adoption <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Post Homeless Pet Info", "PostInfo", "Adoption")</li>
+					        <li>@Html.ActionLink("Adopt Homeless Pet", "Adoptlist", "Adoption")</li>
+				        </ul>
+			        </li>
+			        <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pet Training <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Pet Class", "Index", "PetClassManager")</li>
+                            <li>@Html.ActionLink("Pet Administration Service", "Index", "Pet")</li>
+				        </ul>
+			        </li>
+                    
+			        <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lost & Found <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Post Lost", "AddPetLostInfo", "PetLostFound")</li>
+					        <li>@Html.ActionLink("Post Lost Pet Info", "PetLostHelpInfo", "PetLostFound")</li>
+					        <li>@Html.ActionLink("Post Finding", "PostFinding", "PetLostFound")</li>
+					        <li>@Html.ActionLink("Check Lost Report", "TrackReport", "PetLostFound")</li>
+                            <li>@Html.ActionLink("Claim Pet", "ClaimPet", "PetLostFound")</li>
+				        </ul>
+			        </li>
+
+                    <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rating <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Your Transactions", "RateHome", "Rating")</li>
+				        </ul>
+			        </li>
+
+                    <li class="dropdown">
+				        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recommendation <b class="caret"></b></a>
+				        <ul class="dropdown-menu" role="menu">
+					        <li>@Html.ActionLink("Make Recommendation", "Recommending", "Recommendation")</li>
+                            <li>@Html.ActionLink("Received Recommendation", "RecommendationList", "Recommendation")</li>
+				        </ul>
+			        </li>
+		        </ul>
+	        </div>
+        </nav>
+    </div>
+    @RenderBody()
+</div>
+
+@section scripts {
+    @RenderSection("scripts", required: false)
+}

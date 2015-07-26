@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPostInfo.cshtml";
+}
+
+@model PSP_EF.Models.Pet
+
+@{
+    ViewBag.Title = "Selling";
+}
+
+@if (ViewBag.Message == null)
+{
+    @section form_title {Sell a Pet }
+
+    @section form_action {@Url.Action("Selling", "PetBuyingSelling")}
+
+    @section form_method {method="post"}
+
+    @section form_header_featured {onsubmit="return (transferEditorToDescription() && validateNumber())"}
+
+    @section form_field_featured {
+        @Html.HiddenFor(model => model.PetId)
+        @Html.HiddenFor(model => model.Description)
+    }
+
+    @section form_field_left {
+        <p>Describe the pet you want to sell.</p>
+        <div class="form-group">
+            <p><img src="../../Images/pet_no_photo.png" class="img-thumbnail img-responsive" height="80"/></p>
+            <label for="PetPicture">Pet Picture</label>
+            <input type="file" id="PetPicture">
+        </div>
+        <div class="form-group">
+            <label for="@Html.DisplayNameFor(model => model.PetCategory)">Pet Category*</label>
+            @Html.DropDownListFor(model => model.PetCategory, new SelectList(new List<Object>{
+                new {value = "Cat", text = "Cat"},
+                new {value = "Dog", text = "Dog"},
+                new {value = "Rabbit", text = "Rabbit"},
+                new {value = "Other", text = "Other"}
+            }, "value", "text", "Cat"), new { @class = "form-control required" })
+        </div>
+        <div class="form-group">
+            <label for="@Html.DisplayNameFor(model => model.Price)">Price*</label>
+            <div class="input-group">
+                <span class="input-group-addon">AUD</span>
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control required", @placeholder = "Please enter the price" })
+            </div>
+        </div>
+    }
+
+    @section form_submit {
+        <button type="submit" class="btn btn-default btn-primary">Post Sell Info</button>
+    }
+
+    @section editor_height_style { height: 420px; }
+}

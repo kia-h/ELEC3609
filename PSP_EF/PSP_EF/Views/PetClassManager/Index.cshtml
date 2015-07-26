@@ -1,0 +1,18 @@
+﻿@model IEnumerable<PSP_EF.Models.PetClass>
+@{
+    ViewBag.Title = "Pet Class";
+}
+<h3>Browse Pet Classes</h3>
+
+<p> @Html.ActionLink("Create New", "Create")</p>
+
+<p>
+    Select from @Model.Count() Pet Class:</p>
+<ul>
+    @foreach (var petClass in Model)
+    {
+        <li> @Html.ActionLink( petClass.Name,"Details", new { id = petClass.PetClassId }) </li>       
+    }
+</ul>
+
+

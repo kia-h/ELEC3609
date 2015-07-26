@@ -1,0 +1,131 @@
+﻿@using PSP_EF.Models
+@model PSP_EF.Models.Customer
+
+@{
+    ViewBag.Title = "Edit Details";
+    var theCustomer = (Customer)Session["currentUser"];
+}
+
+@section style {
+    <style type="text/css">
+        body 
+        {
+            padding-top: 80px;
+        }
+        .btn-block
+        {
+            text-align: left;
+            font-size: large;
+            padding: 6px 8px 6px 8px
+        }
+    </style>
+}
+
+@if (ViewBag.Message != null)
+{
+    <h6>@ViewBag.Message</h6>
+
+    <h6>@Html.ActionLink("Go back to home page", "Dashboard", "CustomerAccount").</h6>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">Edit your profile</h1>
+                    </div>
+                    <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+                        @if (@ViewBag.ErrorMessage != null)
+                        {
+                            <div class="alert alert-warning fade in">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                @ViewBag.ErrorMessage
+                            </div>
+                        }
+
+                        <form role="form" class="col-lg-9 form-horizontal" action="@Url.Action("EditDetails", "CustomerAccount")" method="post", onsubmit="return validateEditForm()">
+                            @Html.HiddenFor(model => model.CustomerId, new { @Value = theCustomer.CustomerId })
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.FirstName)" class="col-sm-4 control-label">First Name*</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control required", @placeholder = "Enter Your First Name", @Value = theCustomer.FirstName })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.LastName)" class="col-sm-4 control-label">Last Name*</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @placeholder = "Enter Your Last Name", @Value = theCustomer.LastName  })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.DateOfBirth)" class="col-sm-4 control-label">Date of birth</label>
+                                <div class="input-group date col-sm-8" id="DOBPicker" data-date-format="mm/dd/yyyy">
+                                    @Html.TextBoxFor(model => model.DateOfBirth, new { @placeholder = "Select a Date", @Value = theCustomer.DateOfBirth, @class = "form-control", @readonly = true,  })
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="CityId" class="col-sm-4 control-label">City*</label>
+                                <div class="col-sm-8">
+                                    @Html.DropDownList("CityId", null, new { @class = "form-control required", @Value = theCustomer.CityId })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.Suburb)" class="col-sm-4 control-label">Suburb</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Suburb, new { @class = "form-control", @placeholder = "Enter Your Suburb", @Value = theCustomer.Suburb })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.Address)" class="col-sm-4 control-label">Address</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", @placeholder = "Enter Your Address", @Value = theCustomer.Address })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.Description)" class="col-sm-4 control-label">Description</label>
+                                <div class="col-sm-8">
+                                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Tell us about yourself", @Value = theCustomer.Description })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="@Html.DisplayNameFor(model => model.Phone)" class="col-sm-4 control-label">Phone No</label>
+                                <div class="col-sm-8">
+                                    @Html.TextBoxFor(model => model.Phone, new { @type = "tel", @class = "form-control", @placeholder = "Enter Your Phone Number", @Value = theCustomer.Phone })
+                                </div>
+                            </div>
+                            <div class="col-sm-8 col-sm-offset-4">
+                                <p>* indicates required fields</p>
+                                <button type="submit" class="btn btn-default btn-primary">Save changes</button>
+                                &nbsp;@Html.ActionLink("Cancel", "Dashboard", "CustomerAccount")
+                            </div>
+                        </form>
+                        <div class="col-lg-3">
+                            <h3>Avatar</h3>
+                            <div class="form-group">
+                                <p><img src="../../Images/no_photo.jpg" class="img-thumbnail img-responsive" max-height="80"/></p>
+                                <input type="file" id="PetPicture">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $('#DOBPicker').datetimepicker({
+            weekStart: 1,
+            autoclose: 1,
+            startView: 2,
+            minView: 2,
+            endDate: new Date(),
+            forceParse: 1
+        });
+    </script>
+}
+

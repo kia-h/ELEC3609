@@ -1,0 +1,114 @@
+﻿
+@model PSP_EF.Models.ViewModels.PetsViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutSearching.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pets List</title>
+   
+   <link href="@Url.Content("~/Content/DataTable/demo_table.css")" rel="Stylesheet" type="text/css" />
+   <link href="@Url.Content("~/Content/DataTable/demo_table_jui.css")" rel="Stylesheet" type="text/css" />
+   <link href="@Url.Content("~/Content/themes/base/jquery-ui.css")" rel="Stylesheet" type="text/css" />
+   <link href="@Url.Content("~/Content/themes/smoothness/jquery-ui-1.7.2.custom.css")" rel="Stylesheet" type="text/css"  />
+    
+</head>
+<body>
+ <form id="formAddNewRow" action="#" title="Add new Pet">   
+   <input  name="classID" id="classID"  value="No, Double click to edit" style="display:none" rel="4" />
+    <br />
+    <label for="name">Category</label><br /><input  name="Category" id="Category"  class="required" rel="1" />
+    <br />
+    <label for="name">Price</label><br /><input name="Price" id="Price"  class="required digits" rel="2"/>
+    <br />
+    <label for="name">Description</label><br /><input name="description" id="description"  class="required" rel="3"/>
+    <br />
+    <label for="name">Owner</label>&nbsp<select name="CustomerId"   id="CustomerId" rel="0">    
+                                            <option value="">Customers ...</option>
+                                                @foreach (var c in Model.Customers)
+                                                {
+                                                    <option value="@(string.Format("{0}-{1}", c.CustomerId, c.Username))">@(string.Format("{0}-{1}", c.CustomerId, c.Username))</option> 
+                                                }  
+                                         </select>   
+    <br />
+    
+ </form>
+ <button id="btnAddNewRow" value="Ok">Add new Pet...</button> 
+ <button id="btnDeleteRow" value="cancel">Delete selected Pet</button>
+ <table id="PetsTable" class="display" style=" margin: 0 auto; width: 80%;">
+    <thead>
+        <tr>        
+            <th>User Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Booked Class</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var pet in Model.Pets)
+       {
+            <tr id= "@pet.PetId">
+           
+                <td>@(string.Format("{0}-{1}",pet.CustomerId, pet.Customer.Username))</td>
+                <td>@pet.PetCategory</td>
+                <td>@pet.Price</td>
+                <td>@pet.Description</td>
+                <td>@(pet.HasClass ? string.Format("{0}-{1}", pet.PetClassId,pet.PetClass.Name) : " No, Double click to edit")</td>
+        </tr>
+       }
+    </tbody>
+   </table>
+
+  
+
+
+    @section scripts
+    {
+        <script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.jeditable.mini.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.dataTables.editable.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+                var oMyTable = $('#PetsTable').dataTable({
+
+                    "bProcessing": true,
+                    "bJQueryUI": true
+                }).makeEditable({
+                    "sUpdateURL": "Pet/UpdateData",
+                    "sDeleteURL": "Pet/DeleteData",
+                    "sAddURL": "Pet/AddData",
+                    "aoColumns": [
+                                    null,
+                                    { tooltip: 'Double click to edit' },
+                                    { tooltip: 'Double click to edit' },
+                                    { tooltip: 'Double click to edit' },
+                                    {
+                                        indicator: 'Saving...',
+                                        placeholder: "N/A",
+                                        tooltip: 'Double click to edit',
+                                        loadtext: 'loading...',
+                                        type: 'select',
+
+                                        loadurl: 'Pet/GetAvailableClassesList',
+                                        submit: 'Ok'
+                                    }
+
+                                 ]
+                });
+            });
+        </script>
+    }
+
+</body>
+</html>
+
+

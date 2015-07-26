@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Pet Lost Help Info";
+    Layout = "~/Views/Shared/_LayoutSearching.cshtml";
+}
+
+@model PSP_EF.Models.LostFound
+
+<legend><h1>Help the Pet Owners</h1></legend>
+<p>Found a lost pet? Its owner may be waiting here.</p>
+<div class="row">
+    <form role="form" class="col-sm-4 col-sm-offset-4" action="@Url.Action("PetLostHelpInfoResult", "PetLostFound")" method="post" >
+        <div class="form-group">
+            <label for="PetCategory">Pet Category</label>
+            @Html.DropDownListFor(model => model.PetCategory, new SelectList(new List<Object>{
+                new {value = "Cat", text = "Cat"},
+                new {value = "Dog", text = "Dog"},
+                new {value = "Rabbit", text = "Rabbit"},
+                new {value = "Other", text = "Other"}
+            }, "value", "text", "Cat"), new { @class = "form-control required"})
+        </div>
+        <div class="form-group">
+            <label for="citylist">City</label>
+            @Html.DropDownList("citylist", null, new { @class = "form-control required" })
+        </div>
+        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;Search</button>
+    </form>
+</div>

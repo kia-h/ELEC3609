@@ -1,0 +1,18 @@
+﻿@model IEnumerable<PSP_EF.Models.Recommendation>
+
+@{
+    ViewBag.Title = "RecommendationList";
+}
+
+<h2>Recommendation List</h2>
+
+@foreach (var item in Model)
+{
+    <p>Recommendation from 
+    @Html.DisplayFor(modelItem => item.CustomerAid)</p>
+    
+    
+    @Html.ActionLink("See details", "Details", new { RecId = item.RecommendationId })
+
+    <br /><br />
+}

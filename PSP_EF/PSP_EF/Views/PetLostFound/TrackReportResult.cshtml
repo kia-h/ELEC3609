@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PSP_EF.Models.SearchLostPetResult>
+
+@{
+    ViewBag.Title = "Track Report Result";
+}
+
+@if(@ViewBag.error != null){
+    <h5>@ViewBag.error</h5>
+}
+else{
+    <p>Report ID : @ViewBag.ReportId </p>
+    <p>Pet Category : @ViewBag.PetCategory </p>
+    <p>Description : @ViewBag.Description </p>
+    
+    <h2>Latest Info</h2>
+    <table>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pet_owner_name)
+                </td>
+                <td>:</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.pet_desc)
+                </td>
+             </tr>
+        }
+    }
+    </table>
+    }

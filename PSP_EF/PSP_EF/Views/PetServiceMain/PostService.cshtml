@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Post Service";
+    Layout = "~/Views/Shared/_LayoutSearching.cshtml";
+}
+
+@model PSP_EF.Models.Service
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section style {
+    <style type="text/css">
+        body 
+        {
+            padding-top: 80px;
+        }
+        .btn-block
+        {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+}
+
+<h2>Post Service</h2>
+
+@if (ViewBag.Message != null)
+{
+    <h6>@ViewBag.Message</h6>
+}
+else
+{
+<form role="form" class="col-lg-9 form-horizontal" action="@Url.Action("PostService", "PetServiceMain")" method="post" onsubmit="return validateNumber()">
+    @Html.HiddenFor(model => model.ServiceId)
+    <div class="form-group">
+        <label for="PetCategory" class="col-sm-3 control-label">Service Category</label>
+            <div class="col-sm-9">
+                @Html.DropDownListFor(model => model.ServiceName, new SelectList(new List<Object>{
+                    new {value = "Pet Walking", text = "Pet Walking"},
+                    new {value = "Pet Sitting", text = "Pet Sitting"},
+                    new {value = "Pet Saloon", text = "Pet Saloon"},
+                    new {value = "Pet Washing", text = "Pet Washing"}
+                }, "value", "text", "Pet Walking"))
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="@Html.DisplayNameFor(model => model.Description)" class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Please enter the service description" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="@Html.DisplayNameFor(model => model.Price)" class="col-sm-3 control-label">Price</label>
+        <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Please enter the price" })
+        </div>
+    </div>
+    <button type="submit" class="btn btn-default btn-primary">Post Service Info</button>
+</form>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $('#DOBPicker').datetimepicker({
+            weekStart: 1,
+            autoclose: 1,
+            startView: 2,
+            minView: 2,
+            endDate: new Date(),
+            forceParse: 1
+        });
+    </script>
+
+}

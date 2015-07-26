@@ -1,0 +1,26 @@
+﻿@model PSP_EF.Models.LF_Comment
+
+@{
+    ViewBag.Title = "Post Comment";
+}
+
+<h2>Post Comment</h2>
+
+<form role="form" class="col-lg-9 form-horizontal" action="@Url.Action("SaveComment", "PetLostFound")" method="post" onsubmit="return validatePetComment()" >
+<div class="form-group">
+        <label class="col-sm-3 control-label">Report ID: @ViewBag.reportId</label>
+</div>
+<div class="form-group">
+        <label class="col-sm-3 control-label">Pet Category: @ViewBag.petCategory</label>
+</div>
+<div class="form-group">
+        <label class="col-sm-3 control-label">Description: @ViewBag.description</label>
+</div>
+<div class="form-group">
+            <label for="@Html.DisplayNameFor(model => model.Comment)" class="col-sm-3 control-label">Description</label>
+            <div class="col-sm-9">
+                @Html.TextAreaFor(model => model.Comment, new { @class = "form-control", @placeholder = "Provide your clue here" })
+            </div>
+        </div>
+<button type="submit" class="btn btn-default btn-primary">Submit</button>
+</form>

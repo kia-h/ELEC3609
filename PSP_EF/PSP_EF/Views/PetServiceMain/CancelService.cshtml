@@ -1,0 +1,28 @@
+﻿@model IEnumerable<PSP_EF.Models.SearchServiceResult>
+@{
+    ViewBag.Title = "Cancel Service";
+}
+
+<h2>Cancel Service</h2>
+
+@foreach (var item in Model)
+{
+    <p>Service Provider ID :
+    @Html.DisplayFor(modelItem => item.service_provider_id)</p>
+    
+    <p>Service Provider Name : 
+    @Html.DisplayFor(modelItem => item.service_provider_name)    </p>
+    
+    <p>Service Type : 
+    @Html.DisplayFor(modelItem => item.service_type)    </p>
+    
+    <p>Service Description : 
+    @Html.DisplayFor(modelItem => item.service_desc)    </p>
+    
+    <p>Service Price : 
+    @Html.DisplayFor(modelItem => item.service_price)    </p>
+    
+    @Html.ActionLink("Cancel Hiring", "CancelServiceProcess", new { serviceId = item.service_id })
+    <br /><br />
+}
+

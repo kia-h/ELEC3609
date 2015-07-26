@@ -1,0 +1,68 @@
+﻿@model PSP_EF.Models.Pet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<p class="button">
+        @Html.ActionLink("Add to a class", "AddtoClass", 
+        "PetClassManager", new { id = Model.PetId }, "")
+    </p>
+
+   @* <div class="editor-field">
+            @Html.DropDownList("PetClassId", String.Empty)
+            
+        </div>*@
+
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Pet</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Customer.Username)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Customer.Username)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TransactionId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TransactionId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PetCategory)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetCategory)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HasClass)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HasClass)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PetId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

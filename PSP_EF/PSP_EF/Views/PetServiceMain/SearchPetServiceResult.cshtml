@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Search Pet Service";
+}
+
+@model IEnumerable<PSP_EF.Models.SearchServiceResult>
+
+
+<h2>Search Result</h2>
+
+@foreach (var item in Model)
+{
+    <p>Service Provider ID :
+    @Html.DisplayFor(modelItem => item.service_provider_id)</p>
+    
+    <p>Service Provider Name : 
+    @Html.DisplayFor(modelItem => item.service_provider_name)    </p>
+    
+    <p>Service Type : 
+    @Html.DisplayFor(modelItem => item.service_type)    </p>
+    
+    <p>Service Description : 
+    @Html.DisplayFor(modelItem => item.service_desc)    </p>
+    
+    <p>Service Price : 
+    @Html.DisplayFor(modelItem => item.service_price)    </p>
+    
+    @Html.ActionLink(" Hire this service provider", "HireProcess", new { serviceId = item.service_id })
+    <br /><br />
+}

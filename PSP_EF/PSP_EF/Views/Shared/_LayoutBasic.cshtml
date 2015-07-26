@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<div id="holder">
+    <head>
+		<meta charset="utf-8" />
+		<title>@ViewBag.Title - My ASP.NET MVC Application</title>
+		<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		@Styles.Render("~/Content/bootstrap/base")
+		@Styles.Render("~/Content/bootstrap/theme")
+		@Scripts.Render("~/bundles/bootstrap")
+
+        <style type ="text/css">
+            html,body{
+                height: 100%
+            }
+
+            #holder{
+                min-height: 100%;
+                position:relative;
+            }
+
+            #body{
+                padding-bottom: 100px;    /* height of footer */
+            }
+
+            footer{
+                height: 100px; 
+                width:100%;
+                position: absolute;
+                left: 0;
+                bottom: 0; 
+            }
+        </style>
+
+		<style type="text/css">
+			body 
+			{
+			    padding-top: 70px;
+			}
+		</style>
+		@RenderSection("style", required: false)
+		<script language="javascript" src="/Scripts/datetimepicker.js" type="text/javascript"></script>
+		<script language="javascript" src="/Scripts/dateValidation2.js" type="text/javascript"></script>
+		<script language="javascript" src="/Scripts/defaultDate2.js" type="text/javascript"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/alphanum.js"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/validEmpty.js"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/isNumeric.js"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/trim.js"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/validateEmail.js"></script>
+		<script language="javascript" type="text/javascript" src="/Scripts/inputValidation.js"></script>
+	</head>
+	<div id="body">
+    <body>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+                    @Html.ActionLink("PetServicePortal.com", "Index", "Home", null, new { @class = "navbar-brand" })
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+						<li><a href="@Url.Action("About", "Home")"><i class="glyphicon glyphicon-info-sign"></i> About</a></li>
+					</ul>
+					@Html.Partial("_LoginPartial")
+				</div>
+			</div>
+		</nav>
+		@RenderBody()
+		<!-- FOOTER -->
+		<div class="container">
+			<footer>
+				<p class="pull-right"><a href="#">Back to top</a></p>
+				<p>&copy; 2013 PetServicePortal, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+			</footer>
+		</div>
+		@Scripts.Render("~/bundles/jquery")
+		@Scripts.Render("~/bundles/bootstrap")
+		@RenderSection("scripts", required: false)
+	</body>
+    </div>
+    </div>
+</html>

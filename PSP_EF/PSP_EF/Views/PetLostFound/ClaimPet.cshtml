@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PSP_EF.Models.SearchPetResult>
+@{
+    ViewBag.Title = "Claim Pet";
+}
+
+<h2>Claim Pet</h2>
+
+@foreach (var item in Model)
+{
+    <p>Owner :
+    @Html.DisplayFor(modelItem => item.pet_owner_name)</p>
+    
+    <p>Pet Category : 
+    @Html.DisplayFor(modelItem => item.pet_category)    </p>
+    
+    <p>Description : 
+    @Html.DisplayFor(modelItem => item.pet_desc)    </p>
+        
+    @Html.ActionLink("Claim this pet", "ClaimProcess", new { serviceId = item.service_id })
+    <br /><br />
+}
+

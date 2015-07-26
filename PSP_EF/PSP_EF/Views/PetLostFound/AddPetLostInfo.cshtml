@@ -1,0 +1,59 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutPostInfo.cshtml";
+}
+
+@model PSP_EF.Models.LostFound
+
+@{
+    ViewBag.Title = "Post Pet Lost";
+}
+
+@if (ViewBag.Message == null)
+{
+    @section form_title {Post a Pet Lost }
+
+    @section form_action {@Url.Action("AddPetLostInfo", "PetLostFound")}
+
+    @section form_method {method="post"}
+
+    @section form_header_featured {onsubmit="return transferEditorToDescription()"}
+
+    @section form_field_featured {
+        @Html.HiddenFor(model => model.LostFoundId)
+        @Html.HiddenFor(model => model.Description)
+    }
+
+    @section form_field_left {
+        <p>Describe the pet you lost.</p>
+        <div class="form-group">
+            <p><img src="../../Images/pet_no_photo.png" class="img-thumbnail img-responsive" height="80"/></p>
+            <label for="PetPicture">Pet Picture</label>
+            <input type="file" id="PetPicture">
+        </div>
+        <div class="form-group">
+            <label for="@Html.DisplayNameFor(model => model.PetCategory)">Pet Category*</label>
+            @Html.DropDownListFor(model => model.PetCategory, new SelectList(new List<Object>{
+                new {value = "Cat", text = "Cat"},
+                new {value = "Dog", text = "Dog"},
+                new {value = "Rabbit", text = "Rabbit"},
+                new {value = "Other", text = "Other"}
+            }, "value", "text", "Cat"), new { @class = "form-control required" })
+        </div>
+        <div class="form-group">
+            <label for="citylist">City*</label>
+            @Html.DropDownList("citylist", null, new { @class = "form-control required" })
+        </div>
+    }
+
+    @section form_submit {
+        <button type="submit" class="btn btn-default btn-primary">Post Lost</button>
+    }
+
+    @section editor_height_style { height: 420px; }
+}
+else
+{
+    <h6>@ViewBag.Message2</h6>
+    <h6>@ViewBag.Message3</h6>
+}
+

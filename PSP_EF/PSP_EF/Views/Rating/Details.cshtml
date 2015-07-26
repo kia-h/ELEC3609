@@ -1,0 +1,35 @@
+﻿@model PSP_EF.Models.RecommendationDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Recommendation</legend>
+
+    <div class="display-label">
+     User : @Html.DisplayFor(model => model.Name_CustomerA) has recommended <br /><br />
+    </div>
+
+
+    <div class="display-label">
+         Service ProviderID: @Html.DisplayFor(model => model.recommendation.CustomerAid) 
+         <br />
+         Service Provider Name: @Html.DisplayFor(model => model.Name_CustomerA) 
+         <br />
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.recommendation.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.recommendation.Description)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.recommendation.RecommendationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

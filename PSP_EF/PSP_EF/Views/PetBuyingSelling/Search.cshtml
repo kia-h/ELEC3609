@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PSP_EF.Models.Pet> 
+
+@{
+    ViewBag.Title = "Search";
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+<h1>@ViewBag.Message</h1>
+
+<table>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Buy this pet", "Buy", new { id = item.PetId })
+        </td>
+    </tr>
+}
+</table>

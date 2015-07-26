@@ -1,0 +1,51 @@
+﻿@model PSP_EF.Models.Recommendation
+
+@{
+    ViewBag.Title = "Recommending";
+}
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div class="thumbnail center well well-lg">
+            <legend><h1>Recommending</h1></legend>
+            <form role="form" action="@Url.Action("Recommending", "Recommendation")" method="post">
+                <p>Recommend a service provider to a customer.</p>
+                @if (@ViewBag.Message1 != null)
+                {
+                    <div class="alert alert-warning fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @ViewBag.Message1
+                    </div>
+                }
+                @if (@ViewBag.Message2 != null)
+                {
+                    <div class="alert alert-warning fade in">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        @ViewBag.Message2
+                    </div>
+                }
+                <div class="form-group">
+                    <label for="@Html.DisplayNameFor(model => model.CustomerBid)" class="col-sm-4 control-label">Service Provider ID</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.CustomerBid, new { @type = "number", @class = "form-control required", @placeholder = "Enter The ID of the Service Provider" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="@Html.DisplayNameFor(model => model.CustomerCid)" class="col-sm-4 control-label">Recommend To</label>
+                    <div class="col-sm-8">
+                        @Html.TextBoxFor(model => model.CustomerCid, new { @type = "number", @class = "form-control required", @placeholder = "Enter The ID of the Customer" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="@Html.DisplayNameFor(model => model.Description)" class="col-sm-4 control-label">Description</label>
+                    <div class="col-sm-8">
+                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @placeholder = "Describe the Service" })
+                    </div>
+                </div>
+                <div class="col-sm-offset-5">
+                    <button type="submit" class="btn btn-default btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

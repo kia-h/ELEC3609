@@ -1,0 +1,99 @@
+﻿@model IEnumerable<PSP_EF.Models.SearchPetResult>
+
+@{
+    ViewBag.Title = "Search Result";
+    const int ROWS_PER_PAGE = 10;
+    int currentFirst = 1;
+    int currentLast = ROWS_PER_PAGE;
+    int total = 0;
+    foreach (var item in Model) {total++;}
+    bool showPageBar = false;
+    int readCurrentPage = 1; // TODO: read current page
+    if (total < currentLast) {
+        currentLast = total;
+        showPageBar = false;
+    } else {
+        currentFirst = (readCurrentPage - 1) * ROWS_PER_PAGE + 1;
+        currentLast = readCurrentPage * ROWS_PER_PAGE;
+        showPageBar = true;
+    }
+    int index = 1;
+}
+
+<div class="row">
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Buying", "PetBuyingSelling")">Buying Pets</a></li>
+        <li class="active">@currentFirst - @currentLast of @total</li>
+    </ol>
+</div>
+
+@if (showPageBar)
+{
+    <div class="row">
+        <ul class="pagination pagination-large">
+            <li><a href="#1">&laquo;</a></li>
+            @for (int i = 1; i <= (total + ROWS_PER_PAGE - 1) / ROWS_PER_PAGE; i++)
+            {
+                if (i == readCurrentPage)
+                {
+                    <li class="active"><span>@i</span></li>
+                }
+                else
+                {
+                    <li><a href="#@i">@i</a></li>
+                }
+
+            }
+            <li><a href="#@((total + ROWS_PER_PAGE - 1) / ROWS_PER_PAGE)">&raquo;</a></li>
+        </ul>
+    </div>
+}
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="panel panel-default col-sm-10 col-sm-offset-1">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="../../Images/pet_no_photo.png" class="img-thumbnail img-responsive" style="max-height:140px"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h3>@Html.DisplayFor(modelItem => item.pet_category)</h3>
+                        @Html.DisplayTextFor(modelItem => item.pet_desc)
+                    </div>
+                    <div class="col-sm-3">
+                        <p><i class="glyphicon glyphicon-user"></i>&nbsp @Html.DisplayFor(modelItem => item.pet_owner_name)</p>
+                        <h4>AU$ @Html.DisplayFor(modelItem => item.pet_price)</h4>
+                        @Html.ActionLink("Buy this pet", "BuyProcess", new { serviceId = item.service_id }, new { @class = "btn btn-primary btn-lg", @role = "button" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+@if (showPageBar)
+{
+    <div class="row">
+        <ul class="pagination pagination-large">
+            <li><a href="#1">&laquo;</a></li>
+            @for (int i = 1; i <= (total + ROWS_PER_PAGE - 1) / ROWS_PER_PAGE; i++)
+            {
+                if (i == readCurrentPage)
+                {
+                    <li class="active"><span>@i</span></li>
+                }
+                else
+                {
+                    <li><a href="#@i">@i</a></li>
+                }
+
+            }
+            <li><a href="#@((total + ROWS_PER_PAGE - 1) / ROWS_PER_PAGE)">&raquo;</a></li>
+        </ul>
+    </div>
+}

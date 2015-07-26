@@ -1,0 +1,106 @@
+﻿@model IEnumerable<PSP_EF.Models.Country>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBasic.cshtml";
+}
+
+@section style {
+    <style type="text/css">
+	    body 
+	    {
+	    padding-top: 50px;
+	    }
+    </style>
+}
+
+<div class="container">
+	<div class="row">
+		<div id="carousel-generic" class="carousel slide">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-generic" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-generic" data-slide-to="1"></li>
+				<li data-target="#carousel-generic" data-slide-to="2"></li>
+				<li data-target="#carousel-generic" data-slide-to="3"></li>
+			</ol>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+				<div class="item active">
+					<img src="../../Images/Pets.jpg" alt="pets" />
+					<div class="carousel-caption">
+						<h3>Pet Portal - Your pet expert</h3>
+						<p>You can find all kinds of pet services in Pet Portal. Washing, salon, walking, medical care, and so on. Thousands of workers are waiting to help you.</p>
+						<p>If you can give pet services, Pet Portal is the best place for you to work.</p>
+						<p><a class="btn btn-lg btn-primary" href="@Url.Action("Register", "CustomerAccount")" role="button">Sign up now</a></p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="../../Images/salon.jpg" alt="salon" />
+					<div class="carousel-caption">
+						<h3>Salon</h3>
+						<p>Give your pets a new hair style.</p>
+						<p><a class="btn btn-lg btn-primary" href="@Url.Action("Register", "CustomerAccount")" role="button">Sign up now</a></p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="../../Images/MedicalCare.jpg" alt="medical" />
+					<div class="carousel-caption">
+						<h3>Medical Care</h3>
+						<p>Help your pets when meeting diseases.</p>
+						<p><a class="btn btn-lg btn-primary" href="@Url.Action("Register", "CustomerAccount")" role="button">Sign up now</a></p>
+					</div>
+				</div>
+				<div class="item">
+					<img src="../../Images/Lost-Pet.jpg" alt="lostfound" />
+					<div class="carousel-caption">
+						<h3>Pet Lost & Found</h3>
+						<p>Help your find your pets when you lost them.</p>
+						<p><a class="btn btn-lg btn-primary" href="@Url.Action("Register", "CustomerAccount")" role="button">Sign up now</a></p>
+					</div>
+				</div>
+			</div>
+			<!-- Controls -->
+			<a class="left carousel-control" href="#carousel-generic" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="#carousel-generic" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+	<hr>
+	<!-- Three columns of text below the carousel -->
+	<div class="row" style="text-align: center">
+		<div class="col-lg-4">
+			<img class="img-circle" src="../../Images/small_1.jpg" alt="Generic placeholder image" />
+			<h2>Love and Affection</h2>
+			<p>Please remember to give your pets love and affection, no matter if they are a parrot or a puppy. Don't forget to pet your pet all the time and show how much you love them. Don't forget to play with your pet.</p>
+			<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		</div>
+		<!-- /.col-lg-4 -->
+		<div class="col-lg-4">
+			<img class="img-circle" src="../../Images/small_2.jpg" alt="Generic placeholder image" />
+			<h2>Play with Them</h2>
+			<p>Please remember to play with them! Many pets get bored easily and become fat and lazy. Don't let that happen to your beloved friend! Walk your dog at least once per day. Also, Pets do not need fancy chew toys.</p>
+			<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		</div>
+		<!-- /.col-lg-4 -->
+		<div class="col-lg-4">
+			<img class="img-circle" src="../../Images/small_3.jpg" alt="Generic placeholder image" />
+			<h2>Keep Clean</h2>
+			<p>Please keep your animals clean! Bathe them when they are dirty, and pick up their waste. Pets dont have to be all dressed up to look radiant. All they need is a bath and brushing to sparkle-inside and out.</p>
+			<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+		</div>
+		<!-- /.col-lg-4 -->
+	</div>
+	<!-- /.row -->
+	<hr>
+</div>
+
+@section scripts {
+    <script type="text/javascript">        var $ = jQuery.noConflict(); $(document).ready(function ()
+        { $('.carousel').carousel({ interval: 5000, cycle: true }); }); 
+	
+    </script>
+}

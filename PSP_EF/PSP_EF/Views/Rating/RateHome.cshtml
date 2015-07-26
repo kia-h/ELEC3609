@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PSP_EF.Models.WholeTransList>
+
+@{
+    ViewBag.Title = "RateHome";
+}
+
+<h2>RateHome</h2>
+
+@foreach (var item in Model)
+{   
+   <p> You are the customer:</p>  <br /> 
+    
+    <table border="1px" cellspacing="0px" style="border-collapse:collapse">
+    @foreach (var customertrans in item.CustomerTranslist)
+    {
+    <tr>
+    <th>TransactionID</th> 
+    <th>ServiceName</th>
+    <th>Action</th>
+    </tr>
+    <tr>
+    <td>@Html.DisplayFor(modelItem => customertrans.trans_id)</td>
+    <td> @Html.DisplayFor(modelItem => customertrans.service_name)</td>
+    <td>@Html.ActionLink("Rate this transaction", "CustomerRating", new { transId = customertrans.trans_id })</td>
+    </tr>
+    }
+
+</table>
+ 
+       <p> You are the provider:</p> 
+  <table border="1px" cellspacing="0px" style="border-collapse:collapse">
+    @foreach (var providertrans in item.ProviderTranslist)
+    {
+    <tr>
+    <th>TransactionID</th> 
+    <th>ServiceName</th>
+    <th>Action</th>
+    </tr>
+    <tr>
+    <td>@Html.DisplayFor(modelItem => providertrans.trans_id)</td>
+    <td> @Html.DisplayFor(modelItem => providertrans.service_name)</td>
+    <td>@Html.ActionLink("Rate this transaction", "CustomerRating", new { transId = providertrans.trans_id })</td>
+    </tr>
+    }
+
+</table>
+
+}
+
+

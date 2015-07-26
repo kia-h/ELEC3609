@@ -1,0 +1,85 @@
+﻿@model IEnumerable<PSP_EF.Models.Pet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<form action="@Url.Action("Search", "PetBuying")" method="post">
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PetCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PetCategory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PetId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PetId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PetId })
+        </td>
+    </tr>
+}
+ <tr>
+        <td>
+            Search:
+        </td>
+        <td>
+
+            @Html.TextBox("searchText")    
+            
+        </td>
+        <td>
+            <button type="submit">Search</button>
+        </td>     
+    </tr>
+    <tr>
+        <td>
+            Min:  
+        </td> 
+        <td>
+            @Html.TextBox("fromPrice")   
+        </td>
+        <td>
+            Max: 
+        </td>
+        <td>
+            @Html.TextBox("toPrice")
+        </td>
+    </tr>
+</table>
+</form>

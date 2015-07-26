@@ -1,0 +1,67 @@
+﻿@model PSP_EF.Models.Recommendation
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Recommendation</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerAid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustomerAid)
+            @Html.ValidationMessageFor(model => model.CustomerAid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerBid)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustomerBid)
+            @Html.ValidationMessageFor(model => model.CustomerBid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerCid, "Customer")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CustomerCid", String.Empty)
+            @Html.ValidationMessageFor(model => model.CustomerCid)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Isread)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Isread)
+            @Html.ValidationMessageFor(model => model.Isread)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

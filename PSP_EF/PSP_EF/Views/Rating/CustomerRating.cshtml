@@ -1,0 +1,51 @@
+﻿@model PSP_EF.Models.Rating
+
+@{
+    ViewBag.Title = "CustomerRating";
+}
+
+
+
+
+
+<h2>Customer Rating</h2>
+
+<form action="@Url.Action("CustomerRating", "Rating")" method="post">
+
+Service Name : @ViewBag.ServiceName
+<br />
+
+Service Provider : @ViewBag.ProviderName
+<br />
+<table>
+<tr>
+<td>
+Rate : 
+</td>
+<td>
+@Html.DropDownListFor(model => model.Rate, (List<SelectListItem>)@ViewBag.RateList);
+</td>
+<td>
+<div class="user_rate">
+    <div class="big_rate_bak">
+        <b rate="2" onclick="javascript:up_rate(20);"> </b>
+        <b rate="4" onclick="javascript:up_rate(40);"> </b>
+        <b rate="6" onclick="javascript:up_rate(60);"> </b>
+        <b rate="8" onclick="javascript:up_rate(80);"> </b>
+        <b rate="10" onclick="javascript:up_rate(100);"> </b>
+        <div style="width:45px;" class="big_rate_up"></div>
+    </div>
+    <p><span id="s" class="s"></span><span id="g" class="g"></span></p>
+</div>
+</td>
+<br />
+</tr>
+</table>
+
+
+
+Comment : @Html.TextBoxFor(model => model.Comment)
+
+<button type="submit">Submit</button>
+
+</form>

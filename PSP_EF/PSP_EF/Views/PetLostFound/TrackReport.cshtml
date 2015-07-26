@@ -1,0 +1,18 @@
+﻿@model PSP_EF.Models.LostFound
+
+@{
+    ViewBag.Title = "Track Report";
+}
+
+<h2>Track Report</h2>
+<h6>@ViewBag.error</h6>
+<form role="form" class="col-lg-9 form-horizontal" action="@Url.Action("TrackReportResult", "PetLostFound")" method="post" onsubmit="return validateTrackReport()" >
+<div class="form-group">
+            <label class="col-sm-3 control-label">Report ID :</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(model => model.LostFoundId, new { @class = "form-control", @placeholder = "Enter Your Report ID" })
+            </div>
+        </div>
+<button type="submit" class="btn btn-default btn-primary">Submit</button>
+</form>
+
